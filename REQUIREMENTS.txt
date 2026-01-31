@@ -1,0 +1,24 @@
+Requisitos do Jogo (SeuBarrigaECroassaints/app/Jogo.jar)
+
+1. Ambiente de execução Java
+* As classes compiladas são direcionadas ao Java 17 (versão principal 61), portanto, você precisa do JDK/JRE 17 ou mais recente para executar Jogo.jar ou Jogo.class.
+
+* O manifesto já aponta para Jogo como ponto de entrada, então o comando java -jar Jogo.jar funcionará, desde que o diretório de trabalho contenha os recursos.
+
+2. Recursos e itens
+* Mantenha o diretório assets (e sua subpasta hd) ao lado do arquivo jar/source. O jogo lê arquivos como assets/hd/background_hd.png, assets/wall_tile.png, croissant.png, seu_barriga.png, assets/croissant_eat.mp3 e assets/pistola.wav. Se você enviar as alterações para o GitHub, inclua esses diretórios; caso contrário, as texturas e os sons não serão carregados.
+* O arquivo assets.rar é apenas uma cópia compactada da mesma árvore de recursos para transporte - ele não é lido diretamente. Se você distribuir apenas o arquivo, deverá extraí-lo para que a árvore assets/ original exista antes de executar o jogo.
+
+3. Executando o jogo pré-compilado
+* Abra um terminal em SeuBarrigaECroassaints/app (a mesma pasta que já contém Jogo.jar, Jogo.java, a árvore de recursos e manifest.txt).
+
+* Execute java -jar Jogo.jar. Esse arquivo JAR depende apenas dos módulos padrão de desktop e som do Java.
+
+* Para Windows, você pode usar o pacote completo em SeuBarrigaECroassaints/app/SeuBarrigaECroassaints/SeuBarrigaECroassaints.exe, que inclui seu próprio ambiente de execução Java 25, mas só funciona no Windows.
+
+4. Compilando a partir do código-fonte
+* Compile com javac Jogo.java dentro de SeuBarrigaECroassaints/app (sem declaração de pacote).
+* Execute com java -cp . Jogo (ainda na pasta que contém a árvore de recursos). Mantenha o diretório de trabalho consistente, pois o código usa new File(caminho) para carregar imagens/áudio.
+
+5. Extras opcionais
+* O gerenciador de áudio tenta carregar mídia JavaFX (javafx.scene.media.MediaPlayer) via reflexão para reproduzir MP3s. O JavaFX não está incluído no arquivo JAR, portanto, a reprodução de MP3 só funcionará se o ambiente de execução Java de destino expuser o JavaFX (ou se você executar usando o ambiente de execução do Windows incluído). Se o JavaFX estiver ausente, ele recorrerá silenciosamente a clipes WAV ou tons gerados proceduralmente, para que o jogo ainda funcione sem bibliotecas extras.
